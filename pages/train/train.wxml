@@ -1,0 +1,82 @@
+<!--pages/train/train.wxml-->
+<view class="haibao">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:80px;">
+        <block wx:for="{{imgUrls}}">
+            <swiper-item>
+                <image src="{{item}}" style="width:100%;height:80px;"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+<view class="content">
+    <view class="navbg">
+        <view id="0" class="{{currentTab == 0?'select':'normal'}}" bindtap="switchNav">火车票</view>
+        <view id="1" class="{{currentTab == 1?'select':'normal'}}" bindtap="switchNav">飞机票</view> 
+    </view>
+
+    <view class="formbg">
+        <form bindsubmit="formSubmit">
+            <view class="station"> 
+                <view><input name="startStation" value="广州" /></view>
+                <view><image src="../../images/icon/hcp/xz.jpg" style="width:44px;height:45px;"></image></view>
+                <view><input name="endStation" value="北京" /></view>
+            </view>
+            <view class="hr"></view>
+            <view class="station">
+                <view style="width:70%">
+                    <picker name="date" mode="date" value="{{date}}" bindchange="bindDateChange">
+                        <text>{{date}}</text>
+                    </picker>
+                    <!-- <input name="date" value="5 月 30 日" /> -->
+                </view>
+                <view style="position:absolute;right:10px">></view>
+                <view>
+                    <text style="color:#5495E6;">
+                        <input name="week" value="{{date}}" />
+                    </text>
+                </view>
+            </view>
+            <view class="hr"></view> 
+            <view class="type">
+                <view>高铁动车
+                    <switch checked="{{if_highrail}}" type="switch" bindchange="if_highrail_changed"/>
+                </view> 
+                <view>学生票
+                    <switch checked="{{if_student}}" type="switch" bindchange="if_student_changed"/> 
+                </view>
+            </view>
+            <button class="btn" formType="submit">查询</button> 
+            <view class="record">
+                <text>北京→广州</text>
+                <text>广州→北京</text>
+                <text>清除历史</text> 
+            </view>
+        </form>
+    </view>
+    <view class="icon">
+        <view class="item">
+            <view>
+                <image src="../../images/icon/hcp/jsqp.jpg" style="width:40px;height:40px;"></image>
+            </view>
+            <view class="menu">极速抢票</view>
+        </view>
+        <view class="item">
+            <view>
+                <image src="../../images/icon/hcp/zxxz.jpg" style="width:40px;height:40px;"></image>
+            </view>
+            <view class="menu">在线选座</view>
+        </view>
+        <view class="item">
+            <view>
+                <image src="../../images/icon/hcp/qshh.jpg" style="width:40px;height:40px;"></image>
+            </view>
+            <view class="menu">抢手好货</view>
+        </view>
+        <view class="item">
+            <view>
+                <image src="../../images/icon/hcp/czjd.jpg" style="width:40px;height:40px;"></image>
+            </view>
+            <view class="menu">超值酒店</view>
+        </view>
+    </view>
+</view>
