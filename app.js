@@ -3,6 +3,7 @@ var util = require('./utils/util.js');
 App({
   onLaunch() {
     util.requireSession()
+    util.requireURL()
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
