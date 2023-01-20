@@ -77,11 +77,16 @@ Page({
         let startUTF = escape(startStation) + '%2c';
         let endUTF = escape(endStation) + '%2c';
         console.log("date:"+startDate +",startStation:"+startStation+",endStation:"+endStation)
-        let queryUrl = 'https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=' + startDate + '&leftTicketDTO.from_station=' + startStationCode + '&leftTicketDTO.to_station='+endStationCode+'&purpose_codes=' + userCode;
+
+
+        
         
         var sesStr = wx.getStorageSync('sessionid');
+        var c_url = wx.getStorageSync('c_url');
         var temps = sesStr.split(';');
         var cookie = '';
+        
+        let queryUrl = 'https://kyfw.12306.cn/otn/' + c_url + '?leftTicketDTO.train_date=' + startDate + '&leftTicketDTO.from_station=' + startStationCode + '&leftTicketDTO.to_station='+endStationCode+'&purpose_codes=' + userCode;
 
         for(var i=0;i<temps.length-1;++i){
             var idx = temps[i].indexOf(',');
@@ -104,6 +109,10 @@ Page({
             success: function(res){
                 console.log(res.data);
                 var tempList =res.data.data.result;
+                if(tempList.size == 0){
+                    console.log("empty or error result");
+                    return;
+                }
                 var trainList = new Array();
                 for(var i = 0;i<tempList.length;++i){
                     var idx = tempList[i].indexOf('预订|');
