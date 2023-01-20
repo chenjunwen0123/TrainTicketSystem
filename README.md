@@ -173,9 +173,9 @@ function requestUrl(){
             }
         });
     },
-```
-### 2.2. 查询火车余票
+    ```
 
+### 2.2. 查询火车余票
 1. 构造http请求时，需要结合上文中获取的SessionID手动构造Cookie作为请求头的一部分提交。以下是构造Cookie的代码。
     ```jsx
     var sesStr = wx.getStorageSync('sessionid');
@@ -229,4 +229,5 @@ function requestUrl(){
 - 项目结构
     - 文件目录，其中train和mycenter分别对应tabbar中的“火车票”和“个人中心”，每个页面都有4个文件(.js , .json, .wxml, .wxss)
     - 其中app.js和app.json储存全局配置信息， utils作全局模块使用
+    
   ![structure](READMESRC/structure.png)
